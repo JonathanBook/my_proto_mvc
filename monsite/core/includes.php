@@ -4,7 +4,6 @@ require 'Session.php';
 require 'SendMail.php';
 require 'Form.php' ;
 require 'functions.php';
-require 'functionsForum.php';
 require 'Router.php';
 require ROOT . DS .'config'.DS.'conf.php';
 

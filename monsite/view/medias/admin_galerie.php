@@ -44,7 +44,7 @@
                                         <input type="submit" class="btn btn-primary" value="Sauvegarder les modifications">
                                     </div>
                                     <br>
-                                    <a class="btn btn-danger btn-icon-split" onclick="return confirm('Voulez vous vraiment supprimer cette image')" href="<?php echo Router::url('cockpit/medias/delete/id:' . $v->id); ?>">
+                                    <a class="btn btn-danger btn-icon-split" onclick="return confirm('Voulez vous vraiment supprimer cette image')" href="<?php echo Router::url(conf::$admin_prefixe.'/medias/delete/id:' . $v->id); ?>">
                                         <span class="icon text-white-50"><i class="fas fa-trash"></i></span>
                                         <span class="text">Spupprimer l'image</span>
                                     </a>
