@@ -158,7 +158,7 @@ class Model
                     /*(FR) permet de se proteger de certaine injection html  
                     (EN) allows to protect from certain html injection  */
 
-                    /* (FR)je verifie que ces pas un chiffre
+                    /* (FR)je vérifie que ces pas un chiffre
                     (EN) I check that these are not a number */
                     if (!is_numeric($_value)) {
 

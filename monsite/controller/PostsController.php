@@ -4,7 +4,7 @@ class PostsController extends Controller
 
     function index()
     {
-        /*(FR) Je defini le nombre de post par page
+        /*(FR) Je défini le nombre de post par page
        (EN) I define the number of posts per page*/
         $perPage = 5;
 
@@ -40,7 +40,7 @@ class PostsController extends Controller
     {
 
         $this->loadModel('Post');
-        /*(FR) Je récupère l'article stocker la base de donée qui correspond à cette $id
+        /*(FR) Je récupère l'article stocker la base de donnée qui correspond à cette $id
         (EN) I get the article store the database that corresponds to this id */
         $d['post'] = $this->Post->findFirst(array(
 
@@ -76,6 +76,7 @@ class PostsController extends Controller
 
     function admin_index()
     {
+   
     }
 
     function admin_post_index()
@@ -148,7 +149,7 @@ class PostsController extends Controller
                 $this->redirect('admin/posts/post_index');
             } else {
                 /* PARTIE ERREUR VALIDATION DONNEE */
-                $this->Session->setFlash('Merci de coriger vos information', 'bg-danger');
+                $this->Session->setFlash('Merci de corriger vos information', 'bg-danger');
             }
         } else {
 

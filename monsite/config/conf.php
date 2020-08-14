@@ -11,6 +11,7 @@ class conf
     
      static $debug = 1;
     static $admin_prefixe = 'admin';
+
     
      /* (FR) variable qui contient les infos pour se connecter à la base de données */
     /* (EN) variable that contains the info to connect to the database */
@@ -29,7 +30,7 @@ class conf
 
 // (FR)Régle du Router (EN)Rules Router
 Router::prefix(conf::$admin_prefixe , 'admin');
-Router::connect('', 'posts/index');
+Router::connect('', 'admin/posts/index');
 Router::connect(conf::$admin_prefixe, conf::$admin_prefixe . '/posts/index');
 Router::connect('blog/:slug-:id', 'posts/view/id:([0-9]+)/slug:([a-z0-9\-]+)');
 Router::connect('blog/*', 'posts/*');

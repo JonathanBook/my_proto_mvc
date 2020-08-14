@@ -35,7 +35,7 @@ class MediasController extends Controller
     function admin_delete($id)
     {
         $this->loadModel('Media');
-        /* (FR) On recupère les info sur l'image dans la BD */
+        /* (FR) On récupère les info sur l'image dans la BD */
         $media = $this->Media->findFirst(array(
             'conditions' => array('id' => $id)
 
@@ -68,7 +68,7 @@ class MediasController extends Controller
             $date = (date('Y,m'));
             $temp_date = explode(',', $date);
             $date = $temp_date[0] . DS . $temp_date[1];
-            $dir = 'E:'.DS.'Monsite'.DS.'Site-Formation'  . DS . 'webroot' . DS . 'img' . DS . $date;
+            $dir = WEBROOTT  . DS . 'img' . DS . $date;
 
 
 
@@ -105,7 +105,7 @@ class MediasController extends Controller
                 $this->Session->setFlash('Images ajouté avec succès à la galerie');
 
             } else {
-                /* (FR)Si il a deja un fichier du meme nom on redirige avec un message d'erreur */
+                /* (FR)Si il a déjà un fichier du même nom on redirige avec un message d'erreur */
                 $this->Session->setFlash('Un fichier portant ce nom est cette extension existe déjà');
                 $this->redirect('admin/medias/galerie/');
             }
@@ -125,7 +125,7 @@ class MediasController extends Controller
         reset($_FILES);
 
         /* (FR) Je récupère le premier élément et je stocke dans la variable $temps */
-        /* (EN) I get the first element and I store in the variable $temps */
+        /* (EN) I get the first élément and I store in the variable $temps */
         $temp = current($_FILES);
 
 
@@ -145,8 +145,8 @@ class MediasController extends Controller
             $date = (date('Y,m'));
             $temp_date = explode(',', $date);
             $date = $temp_date[0] . DS . $temp_date[1];
-            $dir = BASE_URL . DS . 'monsite' . DS . 'webroot' . DS . 'img' . DS . $date;
-
+            $dir = WEBROOTT . DS . 'img' . DS . $date;
+       
             /*(FR)Vérifie si le dossier existe
              (EN)Check if the folder exists */
             if (!file_exists($dir)) {
@@ -177,7 +177,7 @@ class MediasController extends Controller
                 $this->Media->save($data);
             }
 
-            $filetowrite = '/' . 'monsite' . '/' . 'webroot' . '/' . 'img' . '/' . $temp_date[0] . '/' . $temp_date[1] . '/' . $temp['name'];
+            $filetowrite = WEBROOTT . '/' . 'img' . '/' . $temp_date[0] . '/' . $temp_date[1] . '/' . $temp['name'];
             /*  Je crée un nouveau tableau dans laquelle je rajoute une clé et que je nomme
             location qui aura le chemin vers mon image.*/
 
