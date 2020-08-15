@@ -1,9 +1,13 @@
+
 <?php
 class PostsController extends Controller
 {
 
     function index()
     {
+        
+
+
         /*(FR) Je défini le nombre de post par page
        (EN) I define the number of posts per page*/
         $perPage = 5;
