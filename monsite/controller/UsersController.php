@@ -65,10 +65,12 @@ class UsersController extends Controller
                 } else {
                     /* Conte nom activer */
                     $this->Session->setFlash("Votre Compé n'est pas activer", 'bg-danger', $user);
+                  
                 }
             } else {
                 /* info incorrecte */
                 $this->Session->setFlash('Votre login ou mot de passe est incorrecte', 'bg-danger', $user);
+              
             }
             /*(FR) Et je supprime son mot de passe pour plus qu'il ne soit visible
             (EN) And I delete his password so that it is not visible */
@@ -82,9 +84,9 @@ class UsersController extends Controller
      */
     function logout()
     {
-
-        setcookie('login', '', time() - 3600);
-        setcookie('password', '', time() - 3600);
+        
+        setcookie('login', '',time()-3600);
+        setcookie('password','', time()-3600);
 
         $this->theme = 'login_and_logout';
         unset($_SESSION['User']);
@@ -178,10 +180,10 @@ class UsersController extends Controller
                                         $key .= mt_rand(0, 9);
                                     }
                                     $SaveUser->validatekey = $key;
-                                    $SaveUser->avatar = 'default.jpg';
+                                    $SaveUser->avatar='default.jpg';
                                     $this->User->save($SaveUser);
                                     /* (FR)On envoi un email de demande de Confirmation */
-                                    SendMail::sendEmail($data->email, "<a href='http://localhost/" . BASE_URL . "/users/confirmation/email:" . $SaveUser->email . "/key:" . $SaveUser->validatekey . "'>Comfirmer Votre email </a>", 'Confirmation d\'inscription');
+                                    SendMail::sendEmail($data->email, "<a href='http://localhost/Site-Dragonnser/users/confirmation/email:" . $SaveUser->email . "/key:" . $SaveUser->validatekey . "'>Comfirmer Votre email </a>", 'Confirmation d\'inscription');
                                     $this->redirect('users/login');
                                 }
                             }
@@ -208,7 +210,7 @@ class UsersController extends Controller
                 $this->Session->setFlash('Votre Compte est bien activer', 'bg-danger');
                 $this->redirect('pages/accueil');
             } else {
-                $this->Session->setFlash('Se compte utlisa  teur nexiste pas ', 'bg-danger');
+
                 $this->redirect('pages/accueil');
             }
         }
@@ -280,11 +282,11 @@ class UsersController extends Controller
             }
         }
         /* (FR) Gestion d'avatar */
-
+  
         if (isset($_FILES['avatar'])) {
-            /* (FR) Je récupère le premier élément et je stocke dans la variable $temps */
+                    /* (FR) Je récupère le premier élément et je stocke dans la variable $temps */
             $temp = current($_FILES);
-
+           
 
             /* (FR) Je vérifie que le fichier a été transmis par le HTTP POST */
             if (is_uploaded_file($temp['tmp_name'])) {
@@ -295,53 +297,25 @@ class UsersController extends Controller
                     $this->Session->setFlash("l'extension de votre fichier n'est pas autoriser sur ce site", 'bg-danger', $newUserinfo);
                     $this->redirect('users/profil');
                 } else {
-                    $dir = 'E:' . DS . 'Monsite' . DS . 'Site-Dragonnser' . DS . 'webroot' . DS . 'img' . DS . 'membre' . DS . 'avatars';
+                   $dir= 'E:'.DS.'Monsite'.DS.'Site-Dragonnser' .DS . 'webroot' . DS . 'img' . DS .'membre'.DS.'avatars';
                     debug($dir);
                     /*(FR) Je définis le chemin où je vais enregistrer mon image et je la stock dans la variable $filetowrite*/
-                    $filetowrite = $dir .  DS . $temp['name'];
+                    $filetowrite = $dir .  DS .$temp['name'];
                     /* (FR)Je déplacer fichier dans le dossier image*/
-                    if (move_uploaded_file($temp['tmp_name'], $filetowrite)) {
+                   if( move_uploaded_file($temp['tmp_name'], $filetowrite)){
 
-                        $SaveUser->avatar = $temp['name'];
-                    }
+                    $SaveUser->avatar = $temp['name'];
+                   }
+             
                 }
             }
         }
-
+  
         $SaveUser->name = $newUserinfo->name;
         $SaveUser->role = $d['user']->role;
         $SaveUser->id = $d['user']->id;
         $this->User->save($SaveUser);
         $this->Session->setFlash('Vos info on était mie à jour');
         $this->redirect('pages/accueil');
-    }
-
-    function admin_listeutilisateurs()
-    {
-
-        $this->loadModel('User');
-        
-        if (isset($this->request->data) && !empty($this->request->data)) {
-
-            $data = $this->request->data;
-            $data->cherche = htmlspecialchars( $data->cherche);
-            $cherche = $this->User->connectQuery('SELECT * FROM users WHERE name LIKE "%' . $data->cherche . '%" ORDER BY id DESC');
-           
-            if (empty( $cherche)) {
-
-                $cherche = $this->User->connectQuery('SELECT * FROM users WHERE CONCAT(name, email,login) LIKE "%' . $data->cherche . '%" ORDER BY id DESC');
-            }
-
-            $d['Users']=$cherche;
-
-        } else { /* Si aucune recherche est demander on envoit la liste de tout les Utilisateur */
-
-            $d['Users'] = $this->User->find(array());
-        }
-
-
-
-
-        $this->set($d);
     }
 }
