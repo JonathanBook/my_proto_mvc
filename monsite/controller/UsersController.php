@@ -10,7 +10,7 @@ class UsersController extends Controller
     function login()
     {
         $this->theme = 'login_and_logout';
-        /*(FR) Je verifie si ma variable data n'est pas vide 
+        /*(FR) Je vérifie si ma variable data n'est pas vide 
         (EN)I check if my data variable is not empty */
         if ($this->request->data) {
 
@@ -42,7 +42,7 @@ class UsersController extends Controller
                      (EN)If the user is logged in*/
                     if ($this->Session->isLogged()) {
 
-                        /* (FR)On va genrai des cookie si lutilisateur Coche  se souvenire de Moi */
+                        /* (FR)On va générai des cookie si l'utilisateur Coche  se souvenir de Moi */
                         if (isset($data->remember)) {
 
                             setcookie('login', $user->login, time() + 365 * 24 * 3600, null, null, false, true);
@@ -64,13 +64,11 @@ class UsersController extends Controller
                     }
                 } else {
                     /* Conte nom activer */
-                    $this->Session->setFlash('Votre Compe nest pas activer', 'bg-danger', $user);
-                  
+                    $this->Session->setFlash("Votre Compé n'est pas activer", 'bg-danger', $user);
                 }
             } else {
                 /* info incorrecte */
                 $this->Session->setFlash('Votre login ou mot de passe est incorrecte', 'bg-danger', $user);
-              
             }
             /*(FR) Et je supprime son mot de passe pour plus qu'il ne soit visible
             (EN) And I delete his password so that it is not visible */
@@ -84,9 +82,9 @@ class UsersController extends Controller
      */
     function logout()
     {
-        
-        setcookie('login', '',time()-3600);
-        setcookie('password','', time()-3600);
+
+        setcookie('login', '', time() - 3600);
+        setcookie('password', '', time() - 3600);
 
         $this->theme = 'login_and_logout';
         unset($_SESSION['User']);
@@ -96,75 +94,75 @@ class UsersController extends Controller
         $this->redirect('pages/accueil');
     }
 
-    /* (FR)Charge la page qui permet de récupèrait sont mot de passe */
+    /* (FR)Charge la page qui permet de récupérait sont mot de passe */
     function ForgotPassword()
     {
         $this->theme = 'login_and_logout';
     }
-    /* (FR)Charge la page qui permet de senregistré*/
+    /* (FR)Charge la page qui permet de s'enregistré*/
     function register()
     {
         $this->theme = 'login_and_logout';
     }
-    /* (FR)Fonction qui permet de sauvgarder un nouvelle utilisateur */
+    /* (FR)Fonction qui permet de sauvegarder un nouvelle utilisateur */
     function newUser()
     {
         $this->loadModel('User');
         if ($this->request->data) {
 
             $data = $this->request->data;
-            /* (FR)On verifie que tou les champs son remplie */
+            /* (FR)On vérifie que tous les champs son remplie */
             if (empty($data->name) || empty($data->login) || empty($data->email) || empty($data->password) || empty($data->password2)) {
 
-                $this->Session->setFlash('Veiller remplire tout les champs', 'bg-danger', $data);
+                $this->Session->setFlash('Veuillez remplire tous les champs', 'bg-danger', $data);
 
                 $this->redirect('users/register');
             } else {
-                /* (FR)On verifie que les deux mot de passe soit identique  */
+                /* (FR)On vérifie que les deux mot de passe soit identique  */
                 if ($data->password != $data->password2) {
-                    $this->Session->setFlash('Vos deux mot de passe ne son pas identique ', 'bg-danger', $data);
+                    $this->Session->setFlash('Vos deux mot de passe ne sont pas identique ', 'bg-danger', $data);
 
                     $this->redirect('users/register');
                 } else {
-                    /* (FR)On cherche si ladreese emaill existe deja dans la base de donée */
+                    /* (FR)On cherche si l'adresse email existe déjà dans la base de donnée */
                     $emailExist = $this->User->find(array(
                         'conditions' => array('email' => $data->email),
                         'fields' => 'email'
                     ));
-                    /* (FR)On cherche si le login existe deja dans la base de donée */
+                    /* (FR)On cherche si le login existe déjà dans la base de donnée */
                     $loginExist = $this->User->find(array(
                         'conditions' => array('login' => $data->login),
                         'fields' => 'login'
                     ));
 
-                    if (!empty($loginExist)) {/* (FR)si le login existe on revois un message dereure  */
+                    if (!empty($loginExist)) {/* (FR)si le login existe on revois un message d'erreur  */
 
-                        $this->Session->setFlash('Ce login est deja utiliser par un autre utilissateur', 'bg-danger', $data);
+                        $this->Session->setFlash('Ce login est deja utilisé par un autre utilisateur', 'bg-danger', $data);
                         $this->redirect('users/register');
                     } else {
-                        /* Verification que le login correspond bien ho critaire demander  */
+                        /* Vérification que le login correspond bien ho cristaires demander  */
                         if (!preg_match('/^[a-zA-z0-9_]+$/', $data->login)) {
 
-                            $this->Session->setFlash('Votre login contient des caractere non hotorizer ', 'bg-danger', $data);
+                            $this->Session->setFlash('Votre login contient des caractère non hotorizer ', 'bg-danger', $data);
                             $this->redirect('users/register');
                         } else {
 
-                            if (!empty($emailExist)) {/* (FR)si l'adresse exite on revois un message dereure  */
+                            if (!empty($emailExist)) {/* (FR)si l'adresse existe on revois un message d'erreur  */
 
 
-                                $this->Session->setFlash('Cette adresse email est deja utiliser', 'bg-danger', $data);
+                                $this->Session->setFlash('Cette adresse email est déjà utiliser', 'bg-danger', $data);
 
                                 $this->redirect('users/register');
                             } else {
 
-                                /* Verification que l'email est correct ho niveau de son format */
+                                /* Vérification que l'email est correct ho niveau de son format */
                                 if (!filter_var($data->email, FILTER_VALIDATE_EMAIL)) {
 
-                                    $this->Session->setFlash('Votre adresse email nes pas valide ', 'bg-danger', $data);
+                                    $this->Session->setFlash("Votre adresse email n'es pas valide", 'bg-danger', $data);
                                     $this->redirect('users/profil');
                                 } else {
-                                    /* (FR)si tout est correct on sauvgarde le nouvelle utilisateur  */
-                                    /* (FR)Encodage du mos de passe pour sauvgarde */
+                                    /* (FR)si tout est correct on sauvegarde le nouvelle utilisateur  */
+                                    /* (FR)Encodage du mos de passe pour sauvegarde */
                                     $data->password = sha1($data->password);
 
                                     $SaveUser = new stdClass();
@@ -173,17 +171,17 @@ class UsersController extends Controller
                                     $SaveUser->password = $data->password;
                                     $SaveUser->email = $data->email;
                                     $SaveUser->role = 'user';
-                                    /* (FR Generation de la ket de validation par email ) */
+                                    /* (FR Génération de la ket de validation par email ) */
                                     $keyLength = 12;
                                     $key = "";
                                     for ($i = 1; $i < $keyLength; $i++) {
                                         $key .= mt_rand(0, 9);
                                     }
                                     $SaveUser->validatekey = $key;
-                                    $SaveUser->avatar='default.jpg';
+                                    $SaveUser->avatar = 'default.jpg';
                                     $this->User->save($SaveUser);
-                                    /* (FR)On envoit un email de demande de Confirmation */
-                                    SendMail::sendEmail($data->email, "<a href='http://localhost/Site-Dragonnser/users/confirmation/email:" . $SaveUser->email . "/key:" . $SaveUser->validatekey . "'>Comfirmer Votre email </a>", 'Confirmation d\'inscription');
+                                    /* (FR)On envoi un email de demande de Confirmation */
+                                    SendMail::sendEmail($data->email, "<a href='http://localhost/" . BASE_URL . "/users/confirmation/email:" . $SaveUser->email . "/key:" . $SaveUser->validatekey . "'>Comfirmer Votre email </a>", 'Confirmation d\'inscription');
                                     $this->redirect('users/login');
                                 }
                             }
@@ -210,7 +208,7 @@ class UsersController extends Controller
                 $this->Session->setFlash('Votre Compte est bien activer', 'bg-danger');
                 $this->redirect('pages/accueil');
             } else {
-
+                $this->Session->setFlash('Se compte utlisa  teur nexiste pas ', 'bg-danger');
                 $this->redirect('pages/accueil');
             }
         }
@@ -236,57 +234,57 @@ class UsersController extends Controller
     {
         $SaveUser = new stdClass();
         $this->loadModel('User');
-        /* (FR)récuperation de l'id de l'utilisateur */
+        /* (FR)récupération de l'id de l'utilisateur */
         $oldUserinfo = $_SESSION['User'];
         $d['user'] = $this->User->findFirst(array(
             'conditions' => array('login' => $oldUserinfo->login, 'email' => $oldUserinfo->email)
         ));
 
-        /* (FR)On recupaire les nouvelle donée envoyer par lutilisateur*/
+        /* (FR)On récupère les nouvelle donnée envoyer par l'utilisateur*/
         $newUserinfo = $this->request->data;
-        /* (Fr)Verification du mot de passe */
+        /* (Fr)Vérification du mot de passe */
         if (empty($newUserinfo->newmp2)) {
             $SaveUser->password = $d['user']->password;
         } else {
             if ($newUserinfo->newmp == $newUserinfo->newmp2) {
                 $SaveUser->password = $newUserinfo->newmp;
             } else {
-                $this->Session->setFlash('Vos deux mot de passe ne son pas identique', 'bg-danger', $newUserinfo);
+                $this->Session->setFlash('Vos deux mot de passe ne sont pas identique', 'bg-danger', $newUserinfo);
                 $this->redirect('users/profil');
             }
         }
-        /* (FR)Verification du login */
+        /* (FR)Vérification du login */
         if ($oldUserinfo->login == $newUserinfo->login) {
             $SaveUser->login = $d['user']->login;
         } else {
             if (!preg_match('/^[a-zA-z0-9_]+$/', $newUserinfo->login)) {
 
-                $this->Session->setFlash('Votre login contient des caractere non hotorizer ', 'bg-danger', $newUserinfo);
+                $this->Session->setFlash('Votre login contient des caractère non hotorizer ', 'bg-danger', $newUserinfo);
                 $this->redirect('users/profil');
             } else {
 
                 $SaveUser->login = $newUserinfo->login;
             }
         }
-        /* (FR) Verification de l'email */
+        /* (FR) Vérification de l'email */
         if ($oldUserinfo->email == $newUserinfo->email) {
             $SaveUser->email = $d['user']->email;
         } else {
 
             if (!filter_var($newUserinfo->email, FILTER_VALIDATE_EMAIL)) {
 
-                $this->Session->setFlash('Votre adresse email nes pas valide ', 'bg-danger', $newUserinfo);
+                $this->Session->setFlash("Votre adresse email n'es pas valide ", 'bg-danger', $newUserinfo);
                 $this->redirect('users/profil');
             } else {
                 $SaveUser->email = $newUserinfo->email;
             }
         }
-        /* (FR) Gestion davatar */
-  
+        /* (FR) Gestion d'avatar */
+
         if (isset($_FILES['avatar'])) {
-                    /* (FR) Je récupère le premier élément et je stocke dans la variable $temps */
+            /* (FR) Je récupère le premier élément et je stocke dans la variable $temps */
             $temp = current($_FILES);
-           
+
 
             /* (FR) Je vérifie que le fichier a été transmis par le HTTP POST */
             if (is_uploaded_file($temp['tmp_name'])) {
@@ -294,28 +292,56 @@ class UsersController extends Controller
                 /* (FR)Je vais vérifier que les extensions correspondent */
                 if (!in_array(strtolower(pathinfo($temp['name'], PATHINFO_EXTENSION)), array("gif", "jpg", "png"))) {
 
-                    $this->Session->setFlash('lextension de votre fichier nest pas autoriser sur ce site ', 'bg-danger', $newUserinfo);
+                    $this->Session->setFlash("l'extension de votre fichier n'est pas autoriser sur ce site", 'bg-danger', $newUserinfo);
                     $this->redirect('users/profil');
                 } else {
-                   $dir= 'E:'.DS.'Monsite'.DS.'Site-Dragonnser' .DS . 'webroot' . DS . 'img' . DS .'membre'.DS.'avatars';
+                    $dir = 'E:' . DS . 'Monsite' . DS . 'Site-Dragonnser' . DS . 'webroot' . DS . 'img' . DS . 'membre' . DS . 'avatars';
                     debug($dir);
                     /*(FR) Je définis le chemin où je vais enregistrer mon image et je la stock dans la variable $filetowrite*/
-                    $filetowrite = $dir .  DS .$temp['name'];
+                    $filetowrite = $dir .  DS . $temp['name'];
                     /* (FR)Je déplacer fichier dans le dossier image*/
-                   if( move_uploaded_file($temp['tmp_name'], $filetowrite)){
+                    if (move_uploaded_file($temp['tmp_name'], $filetowrite)) {
 
-                    $SaveUser->avatar = $temp['name'];
-                   }
-             
+                        $SaveUser->avatar = $temp['name'];
+                    }
                 }
             }
         }
-  
+
         $SaveUser->name = $newUserinfo->name;
         $SaveUser->role = $d['user']->role;
         $SaveUser->id = $d['user']->id;
         $this->User->save($SaveUser);
-        $this->Session->setFlash('Vos info on etait mie a jour ');
+        $this->Session->setFlash('Vos info on était mie à jour');
         $this->redirect('pages/accueil');
+    }
+
+    function admin_listeutilisateurs()
+    {
+
+        $this->loadModel('User');
+        
+        if (isset($this->request->data) && !empty($this->request->data)) {
+
+            $data = $this->request->data;
+            $data->cherche = htmlspecialchars( $data->cherche);
+            $cherche = $this->User->connectQuery('SELECT * FROM users WHERE name LIKE "%' . $data->cherche . '%" ORDER BY id DESC');
+           
+            if (empty( $cherche)) {
+
+                $cherche = $this->User->connectQuery('SELECT * FROM users WHERE CONCAT(name, email,login) LIKE "%' . $data->cherche . '%" ORDER BY id DESC');
+            }
+
+            $d['Users']=$cherche;
+
+        } else { /* Si aucune recherche est demander on envoit la liste de tout les Utilisateur */
+
+            $d['Users'] = $this->User->find(array());
+        }
+
+
+
+
+        $this->set($d);
     }
 }

@@ -1,7 +1,7 @@
 <?php
 $user = $_SESSION['User'];
 
-
+ 
 ?>
 
 <!DOCTYPE html>
@@ -18,11 +18,11 @@ $user = $_SESSION['User'];
     <title>Administration</title>
 
     <!-- Custom fonts for this template-->
-    <link href="/monsite/webroot/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="<?= BASE_URL . '/webroot/vendor/fontawesome-free/css/all.min.css' ?>" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="/monsite/webroot/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="<?= BASE_URL . '/webroot/css/sb-admin-2.min.css' ?>" rel="stylesheet">
 
 </head>
 
@@ -75,22 +75,7 @@ $user = $_SESSION['User'];
                 Édition
             </div>
 
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="<?php echo Router::url('admin/pages/page_index'); ?>" aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
-                </a>
 
-            </li>
-            <!-- Nav Item - Posts Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="<?php echo Router::url('admin/posts/post_index'); ?>" aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Articles</span>
-                </a>
-
-            </li>
 
             <!-- Nav Item - Posts Collapse Menu -->
             <li class="nav-item">
@@ -108,7 +93,18 @@ $user = $_SESSION['User'];
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Gestion des utilisateurs
+            </div>
+            <!-- Nav Item - Posts Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="<?php echo Router::url('admin/users/listeutilisateurs'); ?>" aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Liste des utilisateurs</span>
+                </a>
 
+            </li>
 
         </ul>
         <!-- End of Sidebar -->
@@ -133,25 +129,25 @@ $user = $_SESSION['User'];
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $user->login ?> </span>
-                                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                                <img class="img-profile rounded-circle" src="<?php echo Router::webroot('img/' . $user->avatar)  ?>">
                             </a>
 
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="<?php echo Router::url('users/profil') ?>">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Systeme
+                                    Settings
                                 </a>
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activité
+                                    Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="<?php echo Router::url('users/logout') ?>">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Déconnection
                                 </a>
@@ -202,17 +198,17 @@ $user = $_SESSION['User'];
 
 
             <!-- Bootstrap core JavaScript-->
-            <script src="/monsite/webroot/vendor/jquery/jquery.min.js"></script>
-            <script src="/monsite/webroot/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+            <script src="<?= BASE_URL . '/webroot/vendor/jquery/jquery.min.js ' ?>"></script>
+            <script src="<?= BASE_URL . '/webroot/vendor/bootstrap/js/bootstrap.bundle.min.js ' ?>"></script>
 
             <!-- Core plugin JavaScript-->
-            <script src="/monsite/webroot/vendor/jquery-easing/jquery.easing.min.js"></script>
+            <script src="<?= BASE_URL . '/webroot/vendor/jquery-easing/jquery.easing.min.js ' ?>"></script>
 
             <!-- Custom scripts for all pages-->
-            <script src="/monsite/webroot/js/sb-admin-2.min.js"></script>
+            <script src="<?= BASE_URL . '/webroot/js/sb-admin-2.min.js' ?>"></script>
 
             <!-- Page level plugins -->
-            <script src="/monsite/webroot/vendor/chart.js/Chart.min.js"></script>
+            <script src="<?= BASE_URL . '/webroot/vendor/chart.js/Chart.min.js' ?>"></script>
 
 
 
