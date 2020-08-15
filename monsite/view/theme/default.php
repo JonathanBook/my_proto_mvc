@@ -30,7 +30,7 @@
     <link href="<?php echo BASE_URL.'/webroot/css/styles.css'?>" rel="stylesheet">
 
     <!-- Favicon  -->
-    <link rel="icon" href="<?php echo BASE_URL.'/webroot/img/favicon.png'?>">
+    <link rel="icon" href="<?php echo BASE_URL.'/webroot/img/theme_img/favicon.png'?>">
 </head>
 
 <body data-spy="scroll" data-target=".fixed-top">
@@ -52,7 +52,7 @@
         <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">Evolo</a> -->
 
         <!-- Image Logo -->
-        <a class="navbar-brand logo-image" href="index.html"><img src="/Site-Formation/webroot/img/logo.svg " alt="alternative"></a>
+        <a class="navbar-brand logo-image" href="index.html"><img src="<?php echo BASE_URL.'/webroot/img/theme_img/logo.svg' ?>" alt="alternative"></a>
 
         <!-- Mobile Menu Toggle Button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">

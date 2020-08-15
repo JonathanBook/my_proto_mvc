@@ -129,7 +129,7 @@ $user = $_SESSION['User'];
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $user->login ?> </span>
-                                <img class="img-profile rounded-circle" src="<?php echo Router::webroot('img/' . $user->avatar)  ?>">
+                                <img class="img-profile rounded-circle" src="<?php echo Router::webroot($user->avatar)  ?>">
                             </a>
 
                             <!-- Dropdown - User Information -->

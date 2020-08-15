@@ -33,58 +33,57 @@ function debug($var)
         print_r($var);
         echo '</pre>';
     }
-
-
-
 }
 
-function getDirrecurse($path = '.', $key=null)
+function getDirrecurse($path = '.', $key = null)
 {
-    $d=array();
+    $d = array();
     $ignore = array('cgi-bin', '.', '..');
     $dir = @opendir($path);
     while (false !== ($file = readdir($dir))) {
         if (!in_array($file, $ignore)) {
-            
+
             if (is_dir("$path/$file")) {
-                $d[$file]=array();
-                foreach (getDirrecurse("$path/$file",$file) as $key => $value) {
-                    array_push($d[$file],$value);
+                $d[$file] = array();
+                foreach (getDirrecurse("$path/$file", $file) as $key => $value) {
+                    array_push($d[$file], $value);
                 }
-  
             } else {
-               if($key ==null){
-                $d[$file]=array();
-               }else{
-                  array_push($d, $file);
-               
-               }
+                if ($key == null) {
+                    $d[$file] = array();
+                } else {
+                    array_push($d, $file);
+                }
             }
         }
     }
     closedir($dir);
     return $d;
-
 }
-function lister_fichiers($rep)  
-{  
-    $d=array();
-	if(is_dir($rep))  
-	{  
+function lister_fichiers($rep)
+{
+    $d = array();
+    if (is_dir($rep)) {
         $d['rep'] = $rep;
-        $d['fichier']=array();
-		if($iteration = opendir($rep))  
-		{  
-			while(($fichier = readdir($iteration)) !== false)  
-			{  
-				if($fichier != "." && $fichier != ".." && $fichier != "Thumbs.db")  
-				{  
-                    array_push($d['fichier'],$fichier);
-		
-				}  
-			}  
-			closedir($iteration);  
-		}  
-    }  
+        $d['fichier'] = array();
+        if ($iteration = opendir($rep)) {
+            while (($fichier = readdir($iteration)) !== false) {
+                if ($fichier != "." && $fichier != ".." && $fichier != "Thumbs.db") {
+                    array_push($d['fichier'], $fichier);
+                }
+            }
+            closedir($iteration);
+        }
+    }
     return $d;
-} 
+}
+
+function  retour_json($succes, $msg, $results = null)
+{
+    $retour['success'] = $succes;
+    $retour['message'] = $msg;
+    $retour['results'] = $results;
+
+
+    echo json_encode($retour);
+}

@@ -5,6 +5,8 @@ je recupaire cette url grace a la fonction dirname de php et je lui passe
  en parametre le super variable de php __FILE__ */
 define('WEBROOTT', dirname(__FILE__));
 
+define('DOC_ROOT',dirname( dirname($_SERVER['SCRIPT_FILENAME'])));
+
 /*je remonte de un crant dans la structure des dossier et je recupaire le dossier racine */
 define('ROOT', dirname(WEBROOTT));
 

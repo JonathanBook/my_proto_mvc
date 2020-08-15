@@ -232,6 +232,8 @@ class UsersController extends Controller
 
     function SaveProfilEdite()
     {
+
+
         $SaveUser = new stdClass();
         $this->loadModel('User');
         /* (FR)récupération de l'id de l'utilisateur */
@@ -241,6 +243,7 @@ class UsersController extends Controller
         ));
 
         /* (FR)On récupère les nouvelle donnée envoyer par l'utilisateur*/
+
         $newUserinfo = $this->request->data;
         /* (Fr)Vérification du mot de passe */
         if (empty($newUserinfo->newmp2)) {
@@ -282,12 +285,15 @@ class UsersController extends Controller
         /* (FR) Gestion d'avatar */
 
         if (isset($_FILES['avatar'])) {
+
             /* (FR) Je récupère le premier élément et je stocke dans la variable $temps */
             $temp = current($_FILES);
 
 
+
             /* (FR) Je vérifie que le fichier a été transmis par le HTTP POST */
             if (is_uploaded_file($temp['tmp_name'])) {
+
 
                 /* (FR)Je vais vérifier que les extensions correspondent */
                 if (!in_array(strtolower(pathinfo($temp['name'], PATHINFO_EXTENSION)), array("gif", "jpg", "png"))) {
@@ -295,45 +301,51 @@ class UsersController extends Controller
                     $this->Session->setFlash("l'extension de votre fichier n'est pas autoriser sur ce site", 'bg-danger', $newUserinfo);
                     $this->redirect('users/profil');
                 } else {
-                    $dir = 'E:' . DS . 'Monsite' . DS . 'Site-Dragonnser' . DS . 'webroot' . DS . 'img' . DS . 'membre' . DS . 'avatars';
-                    debug($dir);
+
+
+                    $dir = WEBROOTT . DS . 'img' . DS . 'membres' . DS . $SaveUser->login . DS . 'avatar';
+
                     /*(FR) Je définis le chemin où je vais enregistrer mon image et je la stock dans la variable $filetowrite*/
                     $filetowrite = $dir .  DS . $temp['name'];
+
+                    mkdir($dir, 0777, true);
+
                     /* (FR)Je déplacer fichier dans le dossier image*/
                     if (move_uploaded_file($temp['tmp_name'], $filetowrite)) {
 
-                        $SaveUser->avatar = $temp['name'];
+                        $SaveUser->avatar = 'img' . DS . 'membres' . DS . $SaveUser->login . DS . 'avatar' . DS . $temp['name'];
+
+                        $SaveUser->name = $newUserinfo->name;
+                        $SaveUser->role = $d['user']->role;
+                        $SaveUser->id = $d['user']->id;
+                        $this->User->save($SaveUser);
+                        $_SESSION['User'] = $SaveUser;
+
+                        $this->Session->setFlash('Vos info on était mie à jour');
+                        $this->redirect('pages/accueil');
                     }
                 }
             }
         }
-
-        $SaveUser->name = $newUserinfo->name;
-        $SaveUser->role = $d['user']->role;
-        $SaveUser->id = $d['user']->id;
-        $this->User->save($SaveUser);
-        $this->Session->setFlash('Vos info on était mie à jour');
-        $this->redirect('pages/accueil');
     }
 
     function admin_listeutilisateurs()
     {
 
         $this->loadModel('User');
-        
+
         if (isset($this->request->data) && !empty($this->request->data)) {
 
             $data = $this->request->data;
-            $data->cherche = htmlspecialchars( $data->cherche);
+            $data->cherche = htmlspecialchars($data->cherche);
             $cherche = $this->User->connectQuery('SELECT * FROM users WHERE name LIKE "%' . $data->cherche . '%" ORDER BY id DESC');
-           
-            if (empty( $cherche)) {
+
+            if (empty($cherche)) {
 
                 $cherche = $this->User->connectQuery('SELECT * FROM users WHERE CONCAT(name, email,login) LIKE "%' . $data->cherche . '%" ORDER BY id DESC');
             }
 
-            $d['Users']=$cherche;
-
+            $d['Users'] = $cherche;
         } else { /* Si aucune recherche est demander on envoit la liste de tout les Utilisateur */
 
             $d['Users'] = $this->User->find(array());

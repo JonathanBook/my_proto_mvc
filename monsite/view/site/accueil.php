@@ -13,7 +13,7 @@
                     </div> <!-- end of col -->
                     <div class="col-lg-6">
                         <div class="image-container">
-                            <img class="img-fluid" src="/Site-Formation/webroot/img/header-teamwork.svg" alt="alternative">
+                            <img class="img-fluid" src="<?php echo BASE_URL.'/webroot/img/theme_img/header-teamwork.svg '?>" alt="alternative">
                         </div> <!-- end of image-container -->
                     </div> <!-- end of col -->
                 </div> <!-- end of row -->
@@ -36,32 +36,32 @@
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
                                     <div class="image-container">
-                                        <img class="img-responsive" src="/Site-Formation/webroot/img/customer-logo-1.png" alt="alternative">
+                                        <img class="img-responsive" src="<?php echo BASE_URL.'/webroot/img/theme_img/customer-logo-1.png '?>" alt="alternative">
                                     </div>
                                 </div>
                                 <div class="swiper-slide">
                                     <div class="image-container">
-                                        <img class="img-responsive" src="/Site-Formation/webroot/img/customer-logo-2.png" alt="alternative">
+                                        <img class="img-responsive" src="<?php echo BASE_URL.'/webroot/img/theme_img/customer-logo-2.png'?>" alt="alternative">
                                     </div>
                                 </div>
                                 <div class="swiper-slide">
                                     <div class="image-container">
-                                        <img class="img-responsive" src="/Site-Formation/webroot/img/customer-logo-3.png" alt="alternative">
+                                        <img class="img-responsive" src="<?php echo BASE_URL.'/webroot/img/theme_img/customer-logo-3.png'?>" alt="alternative">
                                     </div>
                                 </div>
                                 <div class="swiper-slide">
                                     <div class="image-container">
-                                        <img class="img-responsive" src="/Site-Formation/webroot/img/customer-logo-4.png" alt="alternative">
+                                        <img class="img-responsive" src="<?php echo BASE_URL.'/webroot/img/theme_img/customer-logo-4.png'?>" alt="alternative">
                                     </div>
                                 </div>
                                 <div class="swiper-slide">
                                     <div class="image-container">
-                                        <img class="img-responsive" src="/Site-Formation/webroot/img/customer-logo-5.png" alt="alternative">
+                                        <img class="img-responsive" src="<?php echo BASE_URL.'/webroot/img/theme_img/customer-logo-5.png'?>" alt="alternative">
                                     </div>
                                 </div>
                                 <div class="swiper-slide">
                                     <div class="image-container">
-                                        <img class="img-responsive" src="/Site-Formation/webroot/img/customer-logo-6.png" alt="alternative">
+                                        <img class="img-responsive" src="<?php echo BASE_URL.'/webroot/img/theme_img/customer-logo-6.png'?>" alt="alternative">
                                     </div>
                                 </div>
                             </div> <!-- end of swiper-wrapper -->
@@ -90,7 +90,7 @@
 
                     <!-- Card -->
                     <div class="card">
-                        <img class="card-image" src="/Site-Formation/webroot/img/services-icon-1.svg" alt="alternative">
+                        <img class="card-image" src="<?php echo BASE_URL.'/webroot/img/theme_img/services-icon-1.svg'?>" alt="alternative">
                         <div class="card-body">
                             <h4 class="card-title">Market Analysis</h4>
                             <p>Our team of enthusiastic marketers will analyse and evaluate how your company stacks against the closest competitors</p>
@@ -100,7 +100,7 @@
 
                     <!-- Card -->
                     <div class="card">
-                        <img class="card-image" src="/Site-Formation/webroot/img/services-icon-2.svg" alt="alternative">
+                        <img class="card-image" src="<?php echo BASE_URL.'/webroot/img/theme_img/services-icon-2.svg'?>" alt="alternative">
                         <div class="card-body">
                             <h4 class="card-title">Opportunity Scan</h4>
                             <p>Once the market analysis process is completed our staff will search for opportunities that are in reach</p>
@@ -110,7 +110,7 @@
 
                     <!-- Card -->
                     <div class="card">
-                        <img class="card-image" src="/Site-Formation/webroot/img/services-icon-3.svg" alt="alternative">
+                        <img class="card-image" src="<?php echo BASE_URL.'/webroot/img/theme_img/services-icon-3.svg'?>" alt="alternative">
                         <div class="card-body">
                             <h4 class="card-title">Action Plan</h4>
                             <p>With all the information in place you will be presented with an action plan that your company needs to follow</p>
@@ -138,7 +138,7 @@
                 </div> <!-- end of col -->
                 <div class="col-lg-6">
                     <div class="image-container">
-                        <img class="img-fluid" src="/Site-Formation/webroot/img/details-1-office-worker.svg" alt="alternative">
+                        <img class="img-fluid" src="<?php echo BASE_URL.'/webroot/img/theme_img/details-1-office-worker.svg'?>" alt="alternative">
                     </div> <!-- end of image-container -->
                 </div> <!-- end of col -->
             </div> <!-- end of row -->
@@ -153,7 +153,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="image-container">
-                        <img class="img-fluid" src="/Site-Formation/webroot/img/details-2-office-team-work.svg" alt="alternative">
+                        <img class="img-fluid" src="<?php echo BASE_URL.'/webroot/img/theme_img/details-2-office-team-work.svg'?>" alt="alternative">
                     </div> <!-- end of image-container -->
                 </div> <!-- end of col -->
                 <div class="col-lg-6">
@@ -189,7 +189,7 @@
                 <button title="Close (Esc)" type="button" class="mfp-close x-button">×</button>
                 <div class="col-lg-8">
                     <div class="image-container">
-                        <img class="img-fluid" src="/Site-Formation/webroot/img/details-lightbox-1.svg" alt="alternative">
+                        <img class="img-fluid" src="<?php echo BASE_URL.'/webroot/img/theme_img/details-lightbox-1.svg'?>" alt="alternative">
                     </div> <!-- end of image-container -->
                 </div> <!-- end of col -->
                 <div class="col-lg-4">
@@ -232,7 +232,7 @@
                 <button title="Close (Esc)" type="button" class="mfp-close x-button">×</button>
                 <div class="col-lg-8">
                     <div class="image-container">
-                        <img class="img-fluid" src="/Site-Formation/webroot/img/details-lightbox-2.svg" alt="alternative">
+                        <img class="img-fluid" src="<?php echo BASE_URL.'/webroot/img/theme_img/details-lightbox-2.svg'?>" alt="alternative">
                     </div> <!-- end of image-container -->
                 </div> <!-- end of col -->
                 <div class="col-lg-4">
@@ -490,7 +490,7 @@
                     <div class="image-container">
                         <div class="video-wrapper">
                             <a class="popup-youtube" href="https://www.youtube.com/watch?v=fLCjQJCekTs" data-effect="fadeIn">
-                                <img class="img-fluid" src="/Site-Formation/webroot/img/video-frame.svg" alt="alternative">
+                                <img class="img-fluid" src="<?php echo BASE_URL.'/webroot/img/theme_img/video-frame.svg'?>" alt="alternative">
                                 <span class="video-play-button">
                                     <span></span>
                                 </span>
@@ -513,7 +513,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="image-container">
-                        <img class="img-fluid" src="/Site-Formation/webroot/img/testimonials-2-men-talking.svg" alt="alternative">
+                        <img class="img-fluid" src="<?php echo BASE_URL.'/webroot/img/theme_img/testimonials-2-men-talking.svg'?>" alt="alternative">
                     </div> <!-- end of image-container -->
                 </div> <!-- end of col -->
                 <div class="col-lg-6">
@@ -527,7 +527,7 @@
                                 <!-- Slide -->
                                 <div class="swiper-slide">
                                     <div class="card">
-                                        <img class="card-image" src="/Site-Formation/webroot/img/testimonial-1.svg" alt="alternative">
+                                        <img class="card-image" src="<?php echo BASE_URL.'/webroot/img/theme_img/testimonial-1.svg'?>" alt="alternative">
                                         <div class="card-body">
                                             <p class="testimonial-text">I just finished my trial period and was so amazed with the support and results that I purchased Evolo right away at the special price.</p>
                                             <p class="testimonial-author">Jude Thorn - Designer</p>
@@ -539,7 +539,7 @@
                                 <!-- Slide -->
                                 <div class="swiper-slide">
                                     <div class="card">
-                                        <img class="card-image" src="/Site-Formation/webroot/img/testimonial-2.svg" alt="alternative">
+                                        <img class="card-image" src="<?php echo BASE_URL.'/webroot/img/theme_img/testimonial-2.svg'?>" alt="alternative">
                                         <div class="card-body">
                                             <p class="testimonial-text">Evolo has always helped or startup to position itself in the highly competitive market of mobile applications. You will not regret using it!</p>
                                             <p class="testimonial-author">Marsha Singer - Developer</p>
@@ -551,7 +551,7 @@
                                 <!-- Slide -->
                                 <div class="swiper-slide">
                                     <div class="card">
-                                        <img class="card-image" src="/Site-Formation/webroot/img/testimonial-3.svg" alt="alternative">
+                                        <img class="card-image" src="<?php echo BASE_URL.'/webroot/img/theme_img/testimonial-3.svg'?>" alt="alternative">
                                         <div class="card-body">
                                             <p class="testimonial-text">Love their services and was so amazed with the support and results that I purchased Evolo for two years in a row. They are awesome.</p>
                                             <p class="testimonial-author">Roy Smith - Marketer</p>
@@ -593,7 +593,7 @@
                     <!-- Team Member -->
                     <div class="team-member">
                         <div class="image-wrapper">
-                            <img class="img-fluid" src="/Site-Formation/webroot/img/team-member-1.svg" alt="alternative">
+                            <img class="img-fluid" src="<?php echo BASE_URL.'/webroot/img/theme_img/team-member-1.svg'?>" alt="alternative">
                         </div> <!-- end of image-wrapper -->
                         <p class="p-large"><strong>Lacy Whitelong</strong></p>
                         <p class="job-title">Business Developer</p>
@@ -617,7 +617,7 @@
                     <!-- Team Member -->
                     <div class="team-member">
                         <div class="image-wrapper">
-                            <img class="img-fluid" src="/Site-Formation/webroot/img/team-member-2.svg" alt="alternative">
+                            <img class="img-fluid" src="<?php echo BASE_URL.'/webroot/img/theme_img/team-member-2.svg'?>" alt="alternative">
                         </div> <!-- end of image wrapper -->
                         <p class="p-large"><strong>Chris Brown</strong></p>
                         <p class="job-title">Online Marketer</p>
@@ -641,7 +641,7 @@
                     <!-- Team Member -->
                     <div class="team-member">
                         <div class="image-wrapper">
-                            <img class="img-fluid" src="/Site-Formation/webroot/img/team-member-3.svg" alt="alternative">
+                            <img class="img-fluid" src="<?php echo BASE_URL.'/webroot/img/theme_img/team-member-3.svg'?>" alt="alternative">
                         </div> <!-- end of image wrapper -->
                         <p class="p-large"><strong>Sheila Zimerman</strong></p>
                         <p class="job-title">Software Engineer</p>
@@ -665,7 +665,7 @@
                     <!-- Team Member -->
                     <div class="team-member">
                         <div class="image-wrapper">
-                            <img class="img-fluid" src="/Site-Formation/webroot/img/team-member-4.svg" alt="alternative">
+                            <img class="img-fluid" src="<?php echo BASE_URL.'/webroot/img/theme_img/team-member-4.svg'?>" alt="alternative">
                         </div> <!-- end of image wrapper -->
                         <p class="p-large"><strong>Mary Villalonga</strong></p>
                         <p class="job-title">Product Manager</p>
