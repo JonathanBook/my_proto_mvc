@@ -22,17 +22,15 @@ class installController extends Controller
           ) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;");
 
         $this->User->connectQuery("CREATE TABLE IF NOT EXISTS `medias` (
-        `id` int(11) NOT NULL AUTO_INCREMENT,
-        `name` varchar(255) DEFAULT NULL,
-        `file` varchar(255) DEFAULT NULL,
-        `info` varchar(255) NOT NULL,
-        `post_id` int(11) DEFAULT NULL,
-        `mediascol` varchar(45) DEFAULT NULL,
-        `type` varchar(255) DEFAULT NULL,
-        PRIMARY KEY (`id`),
-        KEY `fk_medias_posts_idx` (`post_id`)
-        ) ENGINE=MyISAM AUTO_INCREMENT=65 DEFAULT CHARSET=utf8;
-        COMMIT;");
+            `id` int(11) NOT NULL AUTO_INCREMENT,
+            `name` varchar(255) NOT NULL,
+            `url` varchar(255) NOT NULL,
+            `isgalerie` int(1) NOT NULL DEFAULT 0,
+            `type` varchar(255) NOT NULL,
+            `id_theme` int(11) NOT NULL DEFAULT 0,
+            `info` text NOT NULL DEFAULT '',
+            PRIMARY KEY (`id`)
+          ) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;");
         die();
     }
 }
