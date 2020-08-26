@@ -1,5 +1,5 @@
 tinymce.init({
-    selector: '#inputcontent',
+    selector: '.inputcontent',
     height: 500,
 
 
@@ -11,7 +11,7 @@ tinymce.init({
     toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | image",
     content_css: '//www.tiny.cloud/css/codepen.min.css',
     relative_urls: false,
-    images_upload_url: '/monsite/cockpit/medias/upload',
+    images_upload_url: '/Site-Formation/cockpit/medias/upload',
 
 
     images_upload_handler: function (blobInfo, success, failure) {
@@ -22,7 +22,7 @@ tinymce.init({
 
         xhr = new XMLHttpRequest();
         xhr.withCredentials = false;
-        xhr.open('POST', '/monsite/cockpit/medias/upload');
+        xhr.open('POST', '/Site-Formation/cockpit/medias/upload');
 
         xhr.onload = function () {
             var json;
@@ -53,7 +53,7 @@ tinymce.init({
     file_picker_callback: function (callback, value, meta) {
         tinymce.activeEditor.windowManager.openUrl({
             title: 'File Manager',
-            url: '/monsite/cockpit/medias/index',
+            url: '/Site-Formation/cockpit/medias/index',
             onMessage: function (api, data) {
                 if (data.mceAction === 'customAction') {
                     callback(data.url);

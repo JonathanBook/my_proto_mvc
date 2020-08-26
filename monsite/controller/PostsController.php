@@ -1,10 +1,14 @@
+
 <?php
 class PostsController extends Controller
 {
 
     function index()
     {
-        /*(FR) Je defini le nombre de post par page
+
+
+
+        /*(FR) Je défini le nombre de post par page
        (EN) I define the number of posts per page*/
         $perPage = 5;
 
@@ -40,7 +44,7 @@ class PostsController extends Controller
     {
 
         $this->loadModel('Post');
-        /*(FR) Je récupère l'article stocker la base de donée qui correspond à cette $id
+        /*(FR) Je récupère l'article stocker la base de donnée qui correspond à cette $id
         (EN) I get the article store the database that corresponds to this id */
         $d['post'] = $this->Post->findFirst(array(
 
@@ -148,7 +152,7 @@ class PostsController extends Controller
                 $this->redirect('admin/posts/post_index');
             } else {
                 /* PARTIE ERREUR VALIDATION DONNEE */
-                $this->Session->setFlash('Merci de coriger vos information', 'bg-danger');
+                $this->Session->setFlash('Merci de corriger vos information', 'bg-danger');
             }
         } else {
 
@@ -165,5 +169,59 @@ class PostsController extends Controller
         $this->set($d);
     }
 
+    function admin_settings()
+    {
+        $this->loadModel('Rgpd');
+        $this->loadModel('Reseau');
+        $this->loadModel('Email');
 
+        /* Si des info son poster On met ajour les info avant de les afficher  */
+        if (isset($this->request->data) && !empty($this->request->data)) {
+
+            /* on vérifie si la demande de mise à jour vient du Formulaire  rgpd */
+            if (isset($this->request->data->rgpd)) {
+
+                unset($this->request->data->rgpd);
+
+                $this->Rgpd->save($this->request->data);
+           
+                $this->Session->setFlash("Les mentions légales ont été mis à jour");
+
+             /* on vérifie si la demande de mise à jour vient du Formulaire  Réseau */
+            }elseif(isset($this->request->data->reseau)){
+
+                unset($this->request->data->reseau);
+
+                $this->Reseau->save($this->request->data);
+
+                $this->Session->setFlash('Les infos des réseau ont été mis à jour');
+
+            /* on vérifie si la demande de mise à jour vient du Formulaire  email */
+            }elseif(isset($this->request->data->message)){
+               
+                unset($this->request->data->message);
+
+                $this->Email->save($this->request->data);
+
+                $this->Session->setFlash('Les e-mails automatiques ont été mis à jour');
+            }
+
+        }
+    
+        if($this->request->params['value'] == 'rgpd'){
+
+            $d['rgpd'] = $this->Rgpd->find(array());
+
+        }elseif($this->request->params['value'] == 'reseau'){
+
+            $d['reseau'] = $this->Reseau->find(array());
+
+        }elseif($this->request->params['value'] == 'email'){
+
+            $d['email'] = $this->Email->find(array());
+        }
+        
+        
+        $this->set($d);
+    }
 }

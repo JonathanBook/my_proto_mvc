@@ -12,7 +12,7 @@
                 </td>
 
                 <td>
-                    <img src=" <?php  echo Router::webroot('img/membre/avatars/'. $user->avatar)  ?>" alt="" width="150px">
+                    <img src=" <?php  echo Router::webroot( $user->avatar)  ?>" alt="" width="150px">
                     <br>
                 </td>
 

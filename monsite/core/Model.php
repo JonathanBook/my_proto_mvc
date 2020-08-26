@@ -158,7 +158,7 @@ class Model
                     /*(FR) permet de se proteger de certaine injection html  
                     (EN) allows to protect from certain html injection  */
 
-                    /* (FR)je verifie que ces pas un chiffre
+                    /* (FR)je vérifie que ces pas un chiffre
                     (EN) I check that these are not a number */
                     if (!is_numeric($_value)) {
 
@@ -279,6 +279,12 @@ class Model
         $pre = $this->db->prepare($req);
         $pre->execute($data);
         return  $pre->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    public function connectQuery($req){
+      $d= $this->db->query($req);
+     /*   */
+      return $d->fetchAll(PDO::FETCH_OBJ);;
     }
     /* -----------------------------------------------------------------FORM VALIDATION---------------------------------------------- */
     /* (FR) Sert à valider un formulaire 

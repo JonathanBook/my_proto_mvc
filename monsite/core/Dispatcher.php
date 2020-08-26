@@ -74,6 +74,7 @@ class Dispatcher
 
         /*(FR) On vérifie si le fichier PHP existe et que ce n'est pas un admin prefixe
         (EN) We check if the PHP file exists and that it is not an admin prefix */
+    
         if(!file_exists($file) && $this->request->controller != conf::$admin_prefixe && $this->request->controller !='admin'){
 
             $this->error('Le controller '.$this->request->controller.' n\'existe pas');

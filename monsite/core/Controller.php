@@ -52,7 +52,8 @@ class Controller
 
         /*(FR) Si la vue demandé est déjà rendu on retourne false
         (EN) If the requested view is already rendered we return*/
-        if ($this->rendered) {
+      /*   die(debug($this)); */
+        if ($this->rendered || $this->request->controller == 'api') {
             return false;
         }
 

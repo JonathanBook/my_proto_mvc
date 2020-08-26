@@ -5,7 +5,7 @@
   $email='';
   $password='';
 
-  if( $_SESSION['parametre']){
+  if( isset($_SESSION['parametre']) && !empty($_SESSION['parametre'])){
     $_parametre = $_SESSION['parametre'];
     $login =$_parametre->login;
     $name =$_parametre->name;

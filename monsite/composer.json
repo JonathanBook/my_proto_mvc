@@ -1,0 +1,13 @@
+{
+    "name": "jonathan/engine",
+    "description": "moteur php personnelle",
+    "require": {
+        "hybridauth/hybridauth": "^3.4"
+    },
+    "authors": [
+        {
+            "name": "jonathan gauvin",
+            "email": "jonathanfrt@gmail.com"
+        }
+    ]
+}
